@@ -93,8 +93,8 @@ Tuberculosis-Diagnosis-System-using-CNN-1/
  1. Clone this Repository
 
 ```bash
-git clone https://github.com/mukeshkanna/TB-Detection-CNN-ResNet50.git
-cd TB-Detection-CNN-ResNet50
+[git clone https://github.com/mukeshkanna/TB-Detection-CNN-ResNet50.git
+cd TB-Detection-CNN-ResNet50](https://github.com/Mukesh9104/Mediscan-tuberculosis-detection-using-CNN-ResNet50.git)
 ```
 
  2. Create and Activate Virtual Environment
@@ -162,3 +162,4 @@ Authors: Qatar University, University of Dhaka, and collaborators from Malaysia.
 
 ---
 Feel free to use, modify, and distribute with proper citation.
+
