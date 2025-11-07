@@ -1,73 +1,164 @@
-# Cloud Enabled Tuberculosis Diagnosis System using Convolutional Neural Network (CNN)
-<img src="img/tuberculosis_image.jpg">
+🩻 Tuberculosis Detection System using CNN and ResNet50
 
-> Tuberculosis (TB) is a chronic lung disease that occurs due to bacterial infection and is one the top ten leading causes of death. Accurate and early detection of TB is very important, otherwise, it could be life-threatening. We have detected TB reliably from the chest X-ray images using image preprocessing, data augmentation, image segmentation, and Support Vector classification techniques.
+<img src="assets/cover_tb_image.png">
 
-> Several public databases were used to create a database of 1800TB infected and 3700 normal chest X- ray images for this study. Our methodology also makes use of Image Enhancement Techniques for enhancing the blurred image for improving accuracy. The entire prediction is presented as a web Based UI which makes the model available to the common people. The entire model is deployed on the cloud for the larger computational power.
+> **Tuberculosis (TB)** is a chronic infectious disease that primarily affects the lungs and is among the world’s top ten causes of death. Early and accurate diagnosis is crucial to control its spread.
+>
+> This project uses **Deep Learning**–based models (**Convolutional Neural Network (CNN)** and **ResNet50**) to automatically classify **chest X-ray images** as *Normal* or *Tuberculosis infected*. The system provides a user-friendly **web interface built with Streamlit**, generating predictions, animated insights, and downloadable PDF reports.
 
-## <h2>Get Started with </h2>
+---
+
+ Project Overview
+
+The MediScan TB Detection System combines two models for comparative diagnosis:
+
+* CNN Model: Custom-trained from scratch on TB X-ray datasets.
+* ResNet50 Model: A pretrained deep residual network fine-tuned for TB classification.
+
+The interface allows users to upload X-ray images, visualize predictions, compare both models’ results, and download an AI-generated diagnostic report.
+
+---
+
+Dataset Description
+
+This project uses the **Tuberculosis Chest X-Ray Dataset** jointly developed by
+Qatar University, the University of Dhaka, and collaborators from Malaysia.
+
+* **Total Images:** 3500 Normal + 700 TB-infected (public)
+* **Format:** JPEG / PNG chest radiographs
+* **Source:** [Kaggle – Tuberculosis (TB) Chest X-Ray Dataset](https://www.kaggle.com/datasets/tawsifurrahman/tuberculosis-tb-chest-xray-dataset)
+
+Dataset is preprocessed with:
+
+* Image resizing and normalization
+* Data augmentation (rotation, shift, zoom, flip)
+* Train-test split for model evaluation
+
+---
+
+Technology Stack
+
+| Category                    | Technologies Used                          |
+| --------------------------- | ------------------------------------------ |
+| **Frontend**                | Streamlit (Python-based Web UI)            |
+| **Backend**                 | Python, TensorFlow, Keras                  |
+| **Machine Learning Models** | CNN (Custom), ResNet50 (Transfer Learning) |
+| **Dataset Handling**        | NumPy, Pandas, OpenCV                      |
+| **Visualization**           | Matplotlib                                 |
+| **Report Generation**       | FPDF                                       |
+| **Environment**             | Virtual Environment (venv)                 |
+| **Deployment (optional)**   | Cloud / Local Streamlit Server             |
+
+---
+
+Project Structure
+
+```
+Tuberculosis-Diagnosis-System-using-CNN-1/
+│
+├── web.py                        # Streamlit web interface
+├── model/
+│   ├── model.h5                  # Trained CNN model
+│   └── resnet50_tb.h5            # Fine-tuned ResNet50 model
+├── dataset/
+│   └── TB_Chest_Radiography_Database/
+│       ├── Normal/
+│       └── Tuberculosis/
+├── Tuber_Classification.ipynb    # Jupyter notebook for model training
+├── assets/
+│   └── background_lungs.png      # UI background
+├── requirements.txt
+└── README.md
+```
+
+---
+ How It Works
+
+1. **User uploads** a chest X-ray image.
+2. The system preprocesses the image.
+3. **CNN model** predicts infection probability.
+4. **ResNet50 model** performs parallel analysis for comparison.
+5. Results are shown with:
+
+   * Label (Normal / Tuberculosis)
+   * Confidence scores
+   * Animated probability graphs
+   * Downloadable PDF report
+   * Generated report can be sent via email
+
+---
+
+ Installation Guide
+
+ 1. Clone this Repository
 
 ```bash
-https://github.com/Rohini-Viswanathan/Tuberculosis-Diagnosis-System-using-CNN
+git clone https://github.com/mukeshkanna/TB-Detection-CNN-ResNet50.git
+cd TB-Detection-CNN-ResNet50
 ```
 
-## <h3>Dataset Description</h3>
-Researchers from Qatar University and the University of Dhaka, with collaborators from Malaysia, have developed a chest X-ray image database for TB and Normal cases. The dataset includes 700 publicly accessible TB images and 3500 normal images. An additional 2800 TB images are available for download from the NIAID TB portal upon agreement. The     collaboration involves medical experts from Hamad Medical Corporation and Bangladesh.
+ 2. Create and Activate Virtual Environment
 
-## <h3>Project Structure</h3>
-
-* `notebooks` : Jupyter notebooks for data exploration, preprocessing, and model training.
-* ``README.md`` : Project documentation.
-
-## <h2>Installation</h2>
-To run this project locally, follow these steps:
-1. **Clone this Repository** :
-   ```bash
-   https://github.com/Rohini-Viswanathan/Tuberculosis-Diagnosis-System-using-CNN
-   ```
-
-2. **Install Python** :
-   
-   Windows
-   ```bash
-   https://www.python.org/downloads/
-   ```
-   
-4. **Create a virtual environment** :
-   ```bash
-   python -m venv venv
-   source venv/bin/activate
-   ```
-   
-5. **Install required pip libraries**
-   * OpenCV  
-   * TensorFlow
-   * Keras
-   * scikit-learn
-   ```bash
-   pip install <above packages name>
-   ```
-6. **Install Cloud python library**
-   * Streamlit
-
-7. Open the Jupyter notebook to run the Project
-   ```bash
-   jupyter notebook
-   ```
-   
-## <h2>Evaluation Metrics</h2>
-
-* Precision: The proportion of true positive predictions among all positive predictions.
-* Recall: The proportion of true positive predictions among all actual positives.
-* F1-Score: The harmonic mean of precision and recall.
-* ROC-AUC: The area under the receiver operating characteristic curve.
-    
-## <h2>Acknowledgements</h2>
-
-Download the Dataset from the Kaggle
-```
-https://www.kaggle.com/datasets/tawsifurrahman/tuberculosis-tb-chest-xray-dataset
+```bash
+python -m venv venv
+venv\Scripts\activate       # (Windows)
+# or
+source venv/bin/activate    # (Mac/Linux)
 ```
 
-## <h2>Licence</h2>
-[MIT license](LICENSE)
+ 3. Install Required Packages
+
+```bash
+pip install -r requirements.txt
+```
+
+ 4. Run the Application
+
+```bash
+streamlit run web.py
+```
+
+Your app will open at:
+🔗 `http://localhost:8501`
+
+---
+
+ Evaluation Metrics
+
+| Metric                   | Description                                           |
+| ------------------------ | ----------------------------------------------------- |
+| **Accuracy**             | Overall correctness of the predictions                |
+| **Precision**            | Correct positive predictions among all positives      |
+| **Recall (Sensitivity)** | Ability to detect true TB cases                       |
+| **F1-Score**             | Harmonic mean of precision and recall                 |
+| **AUC-ROC**              | Area under the ROC curve showing model discrimination |
+
+---
+
+ Features
+
+✅ Dual Model Comparison (CNN vs ResNet50)
+✅ AI-Powered X-ray Classification
+✅ Animated Confidence Graphs
+✅ PDF Diagnostic Report Generator
+✅ Simple Streamlit Web UI
+✅ Easily Extendable and Cloud Deployable
+
+---
+
+ Future Enhancements
+
+* Integration of Explainable AI (Grad-CAM heatmaps)
+* WhatsApp & Email sharing of reports
+* Larger multi-hospital dataset support
+* Cloud deployment on AWS / Azure
+
+---
+
+Acknowledgements
+
+Dataset: [Tuberculosis (TB) Chest X-Ray Dataset — Kaggle](https://www.kaggle.com/datasets/tawsifurrahman/tuberculosis-tb-chest-xray-dataset)
+Authors: Qatar University, University of Dhaka, and collaborators from Malaysia.
+
+---
+Feel free to use, modify, and distribute with proper citation.
